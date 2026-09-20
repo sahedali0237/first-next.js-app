@@ -1,12 +1,14 @@
 import React from 'react';
-import Hero from '@/app/homePage/Hero'
+import Hero from '@/app/component/heroSection/page';
+import Home from '@/app/homePage/page';
 
-const page = () => {
+const Page = () => {
   return (
     <div>
-      <Hero/>
+      <Hero />
+      <Home />
     </div>
   );
 };
 
-export default page;
+export default Page;

@@ -10,6 +10,7 @@ const Page = () => {
           alt="Books"
           width={500}
           height={500}
+          priority
           className="w-full max-w-sm lg:max-w-md xl:max-w-lg object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)] hover:scale-105 hover:-rotate-2 transition-all duration-500 ease-out"
         />
 
