@@ -4,13 +4,16 @@ import Link from "next/link";
 const Page = () => {
   const links = (
     <>
-      <li>
+      <li className="text-black">
         <Link href="/">Home</Link>
       </li>
-      <li>
+      <li className="text-black">
+        <Link href="/Books">Books</Link>
+      </li>
+      <li className="text-black">
         <Link href="/ListeBooks">Listed Books</Link>
       </li>
-      <li>
+      <li className="text-black">
         <Link href="/pagesToRead">Pages to Read</Link>
       </li>
     </>

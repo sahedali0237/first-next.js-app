@@ -15,11 +15,9 @@ const Page = async () => {
 
   return (
     <div>
-      <h1 className="text-center text-3xl font-bold my-8">
-        View Popular Books
-      </h1>
+      <h1 className="text-center text-3xl font-bold my-8">View All Books</h1>
       <div className="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 lg:grid-cols-3">
-        {loadData.slice(0, 6).map((book) => (
+        {loadData.map((book) => (
           <div
             key={book.bookId}
             className="card overflow-hidden border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
@@ -45,8 +43,8 @@ const Page = async () => {
                 <span className="font-semibold">⭐ {book.rating}</span>
               </div>
 
-              <Link href={`/Books/${book.bookId}`}> 
-                <button className="btn btn-primary mt-4">View Details</button>
+              <Link href={`book/${book.bookId}`}>
+              <button className="btn btn-primary mt-4">View Details</button>
               </Link>
             </div>
           </div>
