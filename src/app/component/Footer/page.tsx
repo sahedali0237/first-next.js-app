@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="footer footer-horizontal footer-center bg-base-200 p-6 text-base-content sm:p-8 md:grid md:grid-cols-2 md:text-left lg:grid-cols-4 lg:p-10">
+    <footer className="footer footer-horizontal footer-center bg-base-200 p-6 text-base-content sm:p-8 md:grid md:grid-cols-2 md:text-left lg:grid-cols-4 lg:p-10 bg-black-200">
       {/* Brand */}
       <aside className="w-full md:col-span-2 lg:col-span-1">
         <div className="flex items-center justify-center gap-2 md:justify-start">
