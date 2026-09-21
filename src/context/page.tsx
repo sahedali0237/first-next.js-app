@@ -1,7 +1,7 @@
 "use client";
 
 import { tsBook } from "@/types/type";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 
 // ======================================================
 // CONTEXT TYPE
@@ -28,43 +28,42 @@ export const BooksContext = createContext<BooksContextType | undefined>(
 // ======================================================
 
 export const BooksProvider = ({ children }: { children: React.ReactNode }) => {
-  const [readBooks, setReadBooks] = useState<tsBook[]>(() => {
-    if (typeof window === "undefined") return [];
+  const [readBooks, setReadBooks] = useState<tsBook[]>([]);
+  const [wishlistBooks, setWishlistBooks] = useState<tsBook[]>([]);
 
+  // Use a ref to track initialization without triggering extra re-renders
+  const isLoadedRef = useRef(false);
+
+  // Load from localStorage on initial mount
+  useEffect(() => {
     try {
       const savedReadBooks = window.localStorage.getItem("readBooks");
-      const parsedReadBooks = savedReadBooks ? JSON.parse(savedReadBooks) : [];
+      if (savedReadBooks) {
+        const parsed = JSON.parse(savedReadBooks);
+        if (Array.isArray(parsed)) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect
+          setReadBooks(parsed as tsBook[]);
+        }
+      }
 
-      return Array.isArray(parsedReadBooks) ? parsedReadBooks : [];
-    } catch (error) {
-      console.error("Failed to load read books:", error);
-      return [];
-    }
-  });
-
-  const [wishlistBooks, setWishlistBooks] = useState<tsBook[]>(() => {
-    if (typeof window === "undefined") return [];
-
-    try {
       const savedWishlistBooks = window.localStorage.getItem("wishlistBooks");
-      const parsedWishlistBooks = savedWishlistBooks
-        ? JSON.parse(savedWishlistBooks)
-        : [];
-
-      return Array.isArray(parsedWishlistBooks) ? parsedWishlistBooks : [];
+      if (savedWishlistBooks) {
+        const parsed = JSON.parse(savedWishlistBooks);
+        if (Array.isArray(parsed)) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect
+          setWishlistBooks(parsed as tsBook[]);
+        }
+      }
     } catch (error) {
-      console.error("Failed to load wishlist books:", error);
-      return [];
+      console.error("Failed to load books from localStorage:", error);
+    } finally {
+      isLoadedRef.current = true;
     }
-  });
+  }, []);
 
-  // ====================================================
-  // SAVE READ BOOKS
-  //
-  // Whenever readBooks changes, save it.
-  // ====================================================
-
+  // Save read books (only after initial load)
   useEffect(() => {
+    if (!isLoadedRef.current) return;
     try {
       localStorage.setItem("readBooks", JSON.stringify(readBooks));
     } catch (error) {
@@ -72,11 +71,9 @@ export const BooksProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [readBooks]);
 
-  // ====================================================
-  // SAVE WISHLIST BOOKS
-  // ====================================================
-
+  // Save wishlist books (only after initial load)
   useEffect(() => {
+    if (!isLoadedRef.current) return;
     try {
       localStorage.setItem("wishlistBooks", JSON.stringify(wishlistBooks));
     } catch (error) {

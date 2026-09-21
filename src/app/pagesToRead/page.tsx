@@ -27,7 +27,12 @@ const colors = [
 ];
 
 // Draw the custom curved triangle path
-const getPath = (x: number, y: number, width: number, height: number): string => {
+const getPath = (
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+): string => {
   return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3}
   ${x + width / 2}, ${y}
   C${x + width / 2},${y + height / 3} ${x + (2 * width) / 3},${y + height} ${x + width}, ${y + height}
@@ -152,7 +157,7 @@ const PagesToRead = () => {
             <div className="rounded-xl border bg-base-100 p-6 shadow-sm">
               <h2 className="mb-6 text-xl font-bold">Pages of Read Books</h2>
 
-              <div className="h-[450px] w-full">
+              <div className="h-112.5 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     data={chartData}
