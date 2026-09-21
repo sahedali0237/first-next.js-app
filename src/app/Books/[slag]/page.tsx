@@ -1,6 +1,8 @@
 import React from "react";
 import { tsBook } from "@/types/type"; // Your custom type file
 import Image from "next/image";
+import ReadButton from "../Button/readButton";
+import WishlistBooks from "./../Button/wishlistButton";
 
 interface bookDetailsPage {
   params: Promise<{
@@ -86,9 +88,11 @@ const detailsPage = async ({ params }: bookDetailsPage) => {
             ))}
           </div>
 
-          <button className="mt-8 w-full md:w-fit px-8 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition">
-            Start Reading
-          </button>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <ReadButton book={book} />
+
+            <WishlistBooks book={book} />
+          </div>
         </div>
       </div>
     </main>
