@@ -15,15 +15,16 @@ const ReadButton = ({ book }: { book: tsBook }) => {
   const { readBooks, setReadBooks } = booksContext;
 
   const handleReadBook = () => {
-    const bookTitle = (book as { bookName?: string }).bookName ?? "Untitled";
+    const bookTitle = book.bookName ?? "Untitled";
 
     // Don't add the same book twice
-    if (readBooks.some((readBook) => readBook.bookName === bookTitle)) {
+    if (readBooks.some((readBook) => readBook.bookId === book.bookId)) {
       toast.info(`${bookTitle} is already in your read list!`);
       return;
     }
 
     setReadBooks((prevBooks) => [...prevBooks, book]);
+
     toast.success(`${bookTitle} added to read list!`);
   };
 
