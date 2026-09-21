@@ -1,12 +1,13 @@
 "use client";
 
+import { tsBook } from "@/types/type";
 import React, { createContext, useState } from "react";
 
 type BooksContextType = {
-  readBooks: string[];
-  setReadBooks: React.Dispatch<React.SetStateAction<string[]>>;
-  wishlistBooks: string[];
-  setWishlistBooks: React.Dispatch<React.SetStateAction<string[]>>;
+  readBooks: tsBook[];
+  setReadBooks: React.Dispatch<React.SetStateAction<tsBook[]>>;
+  wishlistBooks: tsBook[];
+  setWishlistBooks: React.Dispatch<React.SetStateAction<tsBook[]>>;
 };
 
 export const BooksContext = createContext<BooksContextType | undefined>(
@@ -14,8 +15,8 @@ export const BooksContext = createContext<BooksContextType | undefined>(
 );
 
 export const BooksProvider = ({ children }: { children: React.ReactNode }) => {
-  const [readBooks, setReadBooks] = useState<string[]>([]);
-  const [wishlistBooks, setWishlistBooks] = useState<string[]>([]);
+  const [readBooks, setReadBooks] = useState<tsBook[]>([]);
+  const [wishlistBooks, setWishlistBooks] = useState<tsBook[]>([]);
 
   const shard: BooksContextType = {
     readBooks,

@@ -2,6 +2,7 @@
 import { tsBook } from "@/types/type";
 import React, { useContext } from "react";
 import { BooksContext } from "../../../context/page";
+import { toast } from "react-toastify";
 
 const WishlistBooks = ({ book }: { book: tsBook }) => {
   const booksContext = useContext(BooksContext);
@@ -13,11 +14,10 @@ const WishlistBooks = ({ book }: { book: tsBook }) => {
   }
 
   const handelReadBook = () => {
-    const bookTitle = (book as { bookName?: string }).bookName ?? "Untitled";
-    booksContext.setWishlistBooks((prevBooks) => [...prevBooks, bookTitle]);
+    booksContext.setWishlistBooks((prevBooks) => [...prevBooks, book]);
 
     console.log("Wishlist button has been clicked", book);
-    alert(`${book.bookName}Added to Wishlist list!`);
+    toast.success(`${book.bookName ?? "Untitled"} added to Wishlist list!`);
   };
 
   return (

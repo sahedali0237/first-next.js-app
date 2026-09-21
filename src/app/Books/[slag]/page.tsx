@@ -1,8 +1,8 @@
 import React from "react";
 import { tsBook } from "@/types/type"; // Your custom type file
 import Image from "next/image";
-import ReadButton from "../Button/readButton";
-import WishlistBooks from "./../Button/wishlistButton";
+import ReadButton from "../readButton/readButton";
+import WishlistBooks from "../readButton/wishlistButton";
 
 interface bookDetailsPage {
   params: Promise<{

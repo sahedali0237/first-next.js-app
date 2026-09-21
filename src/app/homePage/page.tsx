@@ -45,7 +45,7 @@ const Page = async () => {
                 <span className="font-semibold">⭐ {book.rating}</span>
               </div>
 
-              <Link href={`/Books/${book.bookId}`}> 
+              <Link href={`/Books/${book.bookId}`}>
                 <button className="btn btn-primary mt-4">View Details</button>
               </Link>
             </div>
