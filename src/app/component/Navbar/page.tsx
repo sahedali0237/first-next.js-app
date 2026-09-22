@@ -21,10 +21,10 @@ const Page = () => {
 
   const allButton = (
     <div className="flex gap-2">
-      <Link href="/button" className="btn btn-success">
+      <Link href="/SignIn" className="btn btn-success">
         Sign in
       </Link>
-      <Link href="/button" className="btn btn-error">
+      <Link href="/SignUp" className="btn btn-error">
         Sign up
       </Link>
     </div>
