@@ -5,7 +5,8 @@ import Link from "next/link";
 
 const getData = async (): Promise<tsBook[]> => {
   const rsc = await fetch(
-    `${process.env.NEXT_PUBLIC_SURVER_BASE_URL}/booksData.json`,
+    `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`,
+    { cache: "no-store" },
   );
   const data: tsBook[] = await rsc.json();
 

@@ -14,7 +14,8 @@ const detailsPage = async ({ params }: bookDetailsPage) => {
   const { slag } = await params;
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SURVER_BASE_URL}/booksData.json`,
+    `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`,
+    { cache: "no-store" },
   );
   const data: tsBook[] = await res.json();
 
