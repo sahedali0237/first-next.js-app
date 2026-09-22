@@ -4,7 +4,9 @@ import type { tsBook } from "@/types/type";
 import Link from "next/link";
 
 const getData = async (): Promise<tsBook[]> => {
-  const rsc = await fetch("http://localhost:3000/booksData.json");
+  const rsc = await fetch(
+    `${process.env.NEXT_PUBLIC_SURVER_BASE_URL}/booksData.json`,
+  );
   const data: tsBook[] = await rsc.json();
 
   return data;

@@ -50,7 +50,7 @@ export const BooksProvider = ({ children }: { children: React.ReactNode }) => {
       if (savedWishlistBooks) {
         const parsed = JSON.parse(savedWishlistBooks);
         if (Array.isArray(parsed)) {
-          // eslint-disable-next-line react-hooks/set-state-in-effect
+          
           setWishlistBooks(parsed as tsBook[]);
         }
       }
