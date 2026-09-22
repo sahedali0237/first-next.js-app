@@ -13,7 +13,9 @@ interface bookDetailsPage {
 const detailsPage = async ({ params }: bookDetailsPage) => {
   const { slag } = await params;
 
-  const res = await fetch("http://localhost:3000/booksData.json");
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SURVER_BASE_URL}/booksData.json`,
+  );
   const data: tsBook[] = await res.json();
 
   const book = data.find((item) => item.bookId.toString() === slag);

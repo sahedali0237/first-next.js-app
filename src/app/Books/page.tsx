@@ -2,15 +2,14 @@ import Image from "next/image";
 import React from "react";
 import type { tsBook } from "@/types/type";
 import Link from "next/link";
-import fs from "fs/promises";
-import path from "path";
 
 const getData = async (): Promise<tsBook[]> => {
-  const filePath = path.join(process.cwd(), "public", "booksData.json");
+  const rsc = await fetch(
+    `${process.env.NEXT_PUBLIC_SURVER_BASE_URL}/booksData.json`,
+  );
+  const data: tsBook[] = await rsc.json();
 
-  const file = await fs.readFile(filePath, "utf-8");
-
-  return JSON.parse(file);
+  return data;
 };
 
 const Page = async () => {
